@@ -1,33 +1,33 @@
 export class AppError extends Error {
     constructor(
-        
-        public message: string,
+        message: string,
         public statusCode: number,
-        public isOperational = true
-
-    ){
-
-        super(message);
+        public readonly isOperational = true,
+        options?: ErrorOptions,
+    ) {
+        super(message, options);
         this.name = this.constructor.name;
-        Object.setPrototypeOf(this, new.target.prototype);
-
     }
 }
 
-export class NotFoundError extends AppError{
-    constructor(msg = 'Not Found'){
-        super(msg, 404);
+export class NotFoundError extends AppError {
+    constructor(message = 'Not found', options?: ErrorOptions) {
+        super(message, 404, true, options);
     }
 }
 
-export class ConflictError extends AppError{
-    constructor(msg = 'Conflict'){
-        super(msg, 409)
+export class ConflictError extends AppError {
+    constructor(message = 'Conflict', options?: ErrorOptions) {
+        super(message, 409, true, options);
     }
 }
 
 export class BadRequestError extends AppError {
-    constructor(msg = 'Bad request'){
-        super(msg, 400);
+    constructor(message = 'Bad request', options?: ErrorOptions) {
+        super(message, 400, true, options);
     }
+}
+
+export function isAppError(error: unknown): error is AppError {
+    return error instanceof AppError;
 }

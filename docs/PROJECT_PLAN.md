@@ -113,7 +113,7 @@ Lab1_Todo_App/
 │   │   ├── service/
 │   │   │   └── task-service.ts      # Task business rules
 │   │   ├── utils/
-│   │   │   ├── app-error.ts         # Typed operational errors
+│   │   │   ├── error.ts             # Typed operational errors
 │   │   │   └── logger.ts            # Structured local logging
 │   │   └── database.ts              # SQLite connection and migration setup
 │   └── shared/
@@ -145,8 +145,9 @@ Lab1_Todo_App/
 | React component structure | Complete | Tracked `layout`, `tasks`, and `ui` component folders |
 | Test structure | Complete | Separate backend and frontend test trees |
 | Local data boundary | Complete | Ignored `data/` directory with documented environment override |
-| SQLite schema and migration | Not started | Implement `001_create_tasks.sql` and the migration runner |
-| Backend task behavior | Not started | Implement contracts, database, repository, service, controller, utils, and routes |
+| SQLite schema and migration | Complete | Versioned schema, tracked migrations, reusable connection, and CLI runner |
+| Backend utilities | Complete | Structured logger and typed operational errors |
+| Backend task behavior | Not started | Implement contracts, repository, service, controller, and routes |
 | Todo user interface | Not started | Implement task components, hooks, API client, and responsive styles |
 | Behavior tests | Not started | Add deterministic repository, service, and focused UI tests |
 | Submission documentation | In progress | Finalize dependency and running guides after implementation |
@@ -170,7 +171,7 @@ The complete schema rationale will live in `docs/DATABASE_DESIGN.md` and must re
 
 1. [x] Create the Next.js TypeScript project and install pinned dependencies.
 2. [x] Add linting, testing dependency, and environment structure.
-3. [ ] Add the migration and local SQLite connection.
+3. [x] Add the migration and local SQLite connection.
 
 ### Phase 2 — Backend
 

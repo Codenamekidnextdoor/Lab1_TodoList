@@ -2,7 +2,7 @@
 
 A local-first, single-user todo application built with Next.js, TypeScript, and SQLite for COMS3011A Lab 1.
 
-> **Current status:** Architecture scaffold complete; task behavior is not implemented yet.
+> **Current status:** Phase 1 foundation complete; task behavior begins in Phase 2.
 
 ## Architecture
 
@@ -26,13 +26,21 @@ See [the project plan](docs/PROJECT_PLAN.md) for the complete structure, ownersh
 
 ## Development
 
-The exact clean-clone instructions will be finalized and verified in `docs/RUNNING_IT.md` once the database migration and test command are implemented. During architecture development, the available checks are:
+Install dependencies, initialize the local database, and start the application:
 
 ```bash
 npm install
+npm run db:migrate
 npm run dev
+```
+
+The default database is `data/todo.db`. Set `DATABASE_PATH` to override it. Run the available checks with:
+
+```bash
+npm test
 npm run lint
 npx tsc --noEmit
+npm run build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) after starting the development server.

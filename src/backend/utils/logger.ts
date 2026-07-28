@@ -1,17 +1,35 @@
-type Level = 'info' | 'warn' | 'error' | 'debug';
+type LogLevel = 'info' | 'warn' | 'error' | 'debug';
+type LogMetadata = Record<string, unknown>;
 
-function log(level: Level, message: string, meta?: Record<string, unknown>){
+function log(level: LogLevel, message: string, metadata: LogMetadata = {}) {
     const line = JSON.stringify({
-        timestamp : new Date().toISOString(),
-        level, service: 'back-end', message, ...meta
+        ...metadata,
+        timestamp: new Date().toISOString(),
+        level,
+        service: 'backend',
+        message,
     });
 
-    level === 'error' ? console.error(line) : console.log(line);
+    if (level === 'error') {
+        console.error(line);
+        return;
+    }
+
+    if (level === 'warn') {
+        console.warn(line);
+        return;
+    }
+
+    console.log(line);
 }
 
 export const logger = {
-    info: (msg: string , meta?:Record<string, unknown>) => log('info', msg, meta),
-    warn: (msg: string , meta?:Record<string, unknown>) => log('warn', msg, meta),
-    error: (msg: string , meta?:Record<string, unknown>) => log('error', msg, meta),
-    debug: (msg: string , meta?:Record<string, unknown>) => log('debug', msg, meta)
-}
+    info: (message: string, metadata?: LogMetadata) => log('info', message, metadata),
+    warn: (message: string, metadata?: LogMetadata) => log('warn', message, metadata),
+    error: (message: string, metadata?: LogMetadata) => log('error', message, metadata),
+    debug: (message: string, metadata?: LogMetadata) => {
+        if (process.env.NODE_ENV !== 'production') {
+            log('debug', message, metadata);
+        }
+    },
+};

@@ -1,3 +1,3 @@
 # Backend Utilities
 
-Typed application errors and structured local logging belong here.
+`error.ts` defines typed operational HTTP errors and an `isAppError` guard. `logger.ts` emits structured JSON logs with trusted timestamps, levels, and service names; debug logs are suppressed in production.

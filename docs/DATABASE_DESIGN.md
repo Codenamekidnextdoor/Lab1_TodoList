@@ -27,6 +27,8 @@ erDiagram
 
 The initial design has one table and therefore no foreign-key relationships. A topic is a required label belonging to a task, not an independently managed object. Keeping it on `tasks` avoids a second table whose only purpose would be to hold duplicate-free strings while still allowing the list to sort by topic.
 
+The migration runner also maintains an internal `schema_migrations` table with a migration filename primary key and an `applied_at` timestamp. It is infrastructure metadata rather than application data and has no relationship to `tasks`.
+
 ## `tasks` Table
 
 | Column | SQLite type | Null? | Constraint or default | Purpose |
@@ -95,6 +97,7 @@ The migration creates focused indexes for the required views and sorting operati
 - Foreign-key enforcement is enabled for every connection even though version 1 has no foreign keys.
 - The application creates the local `data/` directory when needed.
 - The migration is idempotent so a fresh clone and an existing installation follow the same startup path.
+- Each applied migration filename is recorded once in `schema_migrations`.
 - Tests create a separate temporary SQLite database and remove it after each test suite. Tests never use `data/todo.db`.
 - SQL values are bound as parameters. Sort columns are selected only from a fixed allow-list because SQL identifiers cannot be safely passed as ordinary value parameters.
 
