@@ -16,7 +16,9 @@ export interface DatabaseOptions {
 
 function resolveDatabasePath(databasePath?: string): string {
     const configuredPath = databasePath ?? process.env.DATABASE_PATH ?? DEFAULT_DATABASE_PATH;
-    return configuredPath === ':memory:' ? configuredPath : path.resolve(process.cwd(), configuredPath);
+    return configuredPath === ':memory:'
+        ? configuredPath
+        : path.resolve(/* turbopackIgnore: true */ process.cwd(), configuredPath);
 }
 
 function ensureDatabaseDirectory(databasePath: string): void {
@@ -53,7 +55,10 @@ export function runMigrations(
             continue;
         }
 
-        const sql = readFileSync(path.join(migrationsPath, migrationName), 'utf8');
+        const sql = readFileSync(
+            path.join(/* turbopackIgnore: true */ migrationsPath, migrationName),
+            'utf8',
+        );
         database.transaction(() => {
             database.exec(sql);
             recordMigration.run(migrationName);

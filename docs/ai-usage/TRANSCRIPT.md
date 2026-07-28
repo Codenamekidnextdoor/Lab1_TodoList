@@ -101,11 +101,27 @@ The proposed `src/components/` and `src/server/` names separated some responsibi
 
 **Validation:** `npm run lint` and `npx tsc --noEmit` passed after restructuring.
 
-This section will be extended as implementation slices are completed. Each entry should identify the prompt or constraint, the generated area, any rejected or revised output, and the validation command used.
+### Phase 1 database foundation
+
+**Assistant action:** Added the versioned SQLite schema, reusable connection and migration runner, migration CLI, and an isolated migration test. Tests use temporary or in-memory databases and never access `data/todo.db`.
+
+**Validation:** The migration test, lint, type check, and production build passed.
+
+### Phase 2 backend
+
+**Human constraint:**
+
+> Make a simple test -> let it fail -> code the most minal code to make it pass -> after then we can refractor after all phases.
+
+**Assistant action:** Implemented Phase 2 in small red-green slices: fixed task statuses and types; repository create, read, update, archive, active/archive listing, and allow-listed sorting; service validation and deterministic overdue derivation; controller HTTP translation; and thin Next.js route adapters. No deletion method or route was added.
+
+**Validation:** Each behavior began with a focused failing test. The completed backend passes 12 tests across migration, types, repository, service, controller, and full route-to-SQL coverage. ESLint, TypeScript, and the production build also pass.
+
+**Runtime correction:** A controller test sent JSON without a title and exposed an attempted `.trim()` on `undefined`, which returned HTTP 500. Runtime type checks were added at the service boundary so malformed task input returns a typed HTTP 400 response. A Turbopack file-tracing warning was removed by marking the configurable database and migration paths as runtime-only while preserving automatic migration discovery.
 
 ## Session 1 — Debugging
 
-This section will record substantive test, lint, build, or runtime failures and the resulting correction. Routine successful command output is summarized rather than copied in full.
+Substantive failures and corrections are recorded with their implementation slices above. Routine successful command output is summarized rather than copied in full.
 
 ## Declaration
 

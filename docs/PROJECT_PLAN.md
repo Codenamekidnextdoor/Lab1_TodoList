@@ -146,9 +146,9 @@ Lab1_Todo_App/
 | Local data boundary | Complete | Ignored `data/` directory with documented environment override |
 | SQLite schema and migration | Complete | Versioned schema, tracked migrations, reusable connection, and CLI runner |
 | Backend utilities | Complete | Structured logger and typed operational errors |
-| Backend task behavior | Not started | Implement contracts, repository, service, controller, and routes |
+| Backend task behavior | Complete | Tested types, repository, service, controller, and route-to-SQL flow |
 | Todo user interface | Not started | Implement task components, hooks, API client, and responsive styles |
-| Behavior tests | Not started | Add deterministic repository, service, and focused UI tests |
+| Behavior tests | In progress | Backend migration, repository, service, controller, and route tests complete; UI tests remain |
 | Submission documentation | In progress | Finalize dependency and running guides after implementation |
 
 Boundary README files intentionally reserve and explain the approved folders; they do not represent implemented behavior.
@@ -186,10 +186,10 @@ Tests are delivered with each behavior rather than postponed until Phase 4. Phas
 
 ### Phase 2 — Backend
 
-1. [ ] Test, then define task types and fixed statuses.
-2. [ ] Test, then minimally implement repository persistence and allow-listed sorting.
-3. [ ] Test, then minimally implement service validation, archive rules, and overdue derivation.
-4. [ ] Test, then minimally implement controllers and route handlers using the shared logger and typed errors.
+1. [x] Test, then define task types and fixed statuses.
+2. [x] Test, then minimally implement repository persistence and allow-listed sorting.
+3. [x] Test, then minimally implement service validation, archive rules, and overdue derivation.
+4. [x] Test, then minimally implement controllers and route handlers using the shared logger and typed errors.
 
 ### Phase 3 — User Interface
 

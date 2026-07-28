@@ -2,7 +2,7 @@
 
 A local-first, single-user todo application built with Next.js, TypeScript, and SQLite for COMS3011A Lab 1.
 
-> **Current status:** Phase 1 foundation complete; task behavior begins in Phase 2.
+> **Current status:** Phase 2 backend complete; Phase 3 will add the tested user interface.
 
 ## Architecture
 
