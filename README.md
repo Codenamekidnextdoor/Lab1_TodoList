@@ -12,7 +12,7 @@ The project keeps browser and server responsibilities visibly separate:
 src/app          Next.js pages and route adapters only
 src/frontend     React components, hooks, styles, and browser API client
 src/backend      Controllers, services, repositories, database, logs, and errors
-src/shared       API-safe contracts shared across the boundary
+src/types        All application TypeScript types and fixed status values
 tests            Separate backend and frontend test trees
 ```
 

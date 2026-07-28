@@ -93,7 +93,7 @@ The proposed `src/components/` and `src/server/` names separated some responsibi
 
 **Assistant action:**
 
-- Materialized separate `src/frontend`, `src/backend`, `src/shared`, and `tests` boundaries.
+- Materialized separate `src/frontend`, `src/backend`, `src/types`, and `tests` boundaries. The original `src/shared` name was later simplified to `src/types` at the user's request.
 - Kept `src/app` as the Next.js-required composition and route-handler area.
 - Made `src/app/page.tsx` render a frontend-owned `AppShell` to prove the dependency direction.
 - Added boundary documentation and tracked placeholders without implementing task behavior.

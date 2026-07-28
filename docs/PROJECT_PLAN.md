@@ -59,14 +59,14 @@ The Next.js files under `src/app/` are deliberately thin composition points. Pag
 flowchart TD
     APP[src/app: framework adapters] --> FRONTEND[src/frontend]
     APP --> BACKEND[src/backend]
-    FRONTEND --> SHARED[src/shared]
-    BACKEND --> SHARED
+    FRONTEND --> TYPES[src/types]
+    BACKEND --> TYPES
     BACKEND --> SQLITE[(SQLite)]
 ```
 
 - `frontend` must never import from `backend` directly. Browser code communicates through `/api/tasks`.
 - `backend` must never import React components, hooks, or browser-only APIs.
-- `shared` contains only transport-safe contracts needed on both sides; it contains no database or React implementation.
+- `types` contains all application TypeScript types and transport-safe constants; it contains no database or React implementation.
 - `app` is the only composition boundary allowed to import both frontend and backend modules.
 
 ## 4. Project Structure
@@ -103,8 +103,7 @@ Lab1_Todo_App/
 │   │   ├── hooks/                    # Task fetching and form interaction hooks
 │   │   ├── lib/
 │   │   │   └── task-api.ts          # Typed browser calls to /api/tasks
-│   │   ├── styles/                   # Frontend component styles and tokens
-│   │   └── types/                    # View models used only by React code
+│   │   └── styles/                   # Frontend component styles and tokens
 │   ├── backend/
 │   │   ├── controller/
 │   │   │   └── task-controller.ts   # HTTP-to-service translation
@@ -116,8 +115,8 @@ Lab1_Todo_App/
 │   │   │   ├── error.ts             # Typed operational errors
 │   │   │   └── logger.ts            # Structured local logging
 │   │   └── database.ts              # SQLite connection and migration setup
-│   └── shared/
-│       └── task-contracts.ts         # Statuses and API-safe task contracts
+│   └── types/
+│       └── task.ts                   # Task types, statuses, and API data shapes
 ├── tests/
 │   ├── backend/
 │   │   ├── helpers/
@@ -141,7 +140,7 @@ Lab1_Todo_App/
 | Area | Status | Evidence or next deliverable |
 | --- | --- | --- |
 | Next.js foundation | Complete | TypeScript App Router scaffold and installed dependencies |
-| Frontend/backend separation | Complete | Physical `src/frontend`, `src/backend`, `src/shared`, and thin `src/app` boundaries |
+| Frontend/backend separation | Complete | Physical `src/frontend`, `src/backend`, `src/types`, and thin `src/app` boundaries |
 | React component structure | Complete | Tracked `layout`, `tasks`, and `ui` component folders |
 | Test structure | Complete | Separate backend and frontend test trees |
 | Local data boundary | Complete | Ignored `data/` directory with documented environment override |
@@ -167,6 +166,18 @@ The complete schema rationale will live in `docs/DATABASE_DESIGN.md` and must re
 
 ## 6. Delivery Phases
 
+### Implementation method
+
+Every behavior is developed using a strict red-green-minimal cycle:
+
+1. Write one small test describing the next behavior.
+2. Run that test and confirm it fails for the expected reason.
+3. Write only the minimum code required to make that test pass.
+4. Run the focused test again, followed by the existing test suite.
+5. Defer refactoring until all delivery phases are functionally complete.
+
+Tests are delivered with each behavior rather than postponed until Phase 4. Phase 4 verifies and expands the completed behavior; it does not introduce the first tests.
+
 ### Phase 1 — Foundation
 
 1. [x] Create the Next.js TypeScript project and install pinned dependencies.
@@ -175,26 +186,27 @@ The complete schema rationale will live in `docs/DATABASE_DESIGN.md` and must re
 
 ### Phase 2 — Backend
 
-1. [ ] Define task domain types and fixed statuses.
-2. [ ] Implement the repository with parameterized queries and allow-listed sorting.
-3. [ ] Implement service validation, archive rules, and overdue derivation.
-4. [ ] Implement controllers, typed errors, logging, and route handlers.
+1. [ ] Test, then define task types and fixed statuses.
+2. [ ] Test, then minimally implement repository persistence and allow-listed sorting.
+3. [ ] Test, then minimally implement service validation, archive rules, and overdue derivation.
+4. [ ] Test, then minimally implement controllers and route handlers using the shared logger and typed errors.
 
 ### Phase 3 — User Interface
 
-1. [ ] Build reusable UI primitives in `src/frontend/components/ui/`.
-2. [ ] Build create and edit task forms for all four task fields in `src/frontend/components/tasks/`.
-3. [ ] Build active and archived task views.
-4. [ ] Add status, topic, and due-date sorting controls.
-5. [ ] Add an accessible visual overdue indicator and responsive states.
+1. [ ] Test, then minimally build reusable UI primitives in `src/frontend/components/ui/`.
+2. [ ] Test, then minimally build create and edit task forms for all four task fields.
+3. [ ] Test, then minimally build active and archived task views.
+4. [ ] Test, then minimally add status, topic, and due-date sorting controls.
+5. [ ] Test, then minimally add an accessible overdue indicator and responsive states.
 
 ### Phase 4 — Verification and Submission
 
-1. [ ] Add deterministic repository and service tests using temporary databases.
-2. [ ] Run tests, lint, and a production build.
-3. [ ] Perform the seven-step walkthrough from a clean-clone equivalent.
-4. [ ] Finalize the three required documentation files and AI transcript.
-5. [ ] Build a coherent Git history of at least six working commits across multiple sessions.
+1. [ ] Add any missing edge-case tests identified by the completed walkthrough.
+2. [ ] Refactor completed behavior while keeping the full suite green.
+3. [ ] Run tests, lint, and a production build.
+4. [ ] Perform the seven-step walkthrough from a clean-clone equivalent.
+5. [ ] Finalize the three required documentation files and AI transcript.
+6. [ ] Build a coherent Git history of at least six working commits across multiple sessions.
 
 ## 7. Definition of Done
 
