@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+# local SQLite data
+/data/*
+!/data/README.md
+
 # next.js
 /.next/
 /out/
@@ -30,8 +34,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (commit only the documented example)
 .env*
+!.env.example
 
 # vercel
 .vercel

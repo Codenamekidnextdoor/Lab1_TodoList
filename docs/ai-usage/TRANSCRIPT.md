@@ -85,6 +85,22 @@ The proposed `src/components/` and `src/server/` names separated some responsibi
 
 ## Session 1 — Code Generation
 
+### Architecture scaffold
+
+**Human prompt:**
+
+> Fix the folder structure and architecture, then identify what remains from the project plan.
+
+**Assistant action:**
+
+- Materialized separate `src/frontend`, `src/backend`, `src/shared`, and `tests` boundaries.
+- Kept `src/app` as the Next.js-required composition and route-handler area.
+- Made `src/app/page.tsx` render a frontend-owned `AppShell` to prove the dependency direction.
+- Added boundary documentation and tracked placeholders without implementing task behavior.
+- Added local database ignore rules and an environment example.
+
+**Validation:** `npm run lint` and `npx tsc --noEmit` passed after restructuring.
+
 This section will be extended as implementation slices are completed. Each entry should identify the prompt or constraint, the generated area, any rejected or revised output, and the validation command used.
 
 ## Session 1 — Debugging

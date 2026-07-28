@@ -74,7 +74,7 @@ flowchart TD
 ```text
 Lab1_Todo_App/
 ├── data/
-│   └── .gitkeep                    # Runtime database directory; database files are ignored
+│   └── README.md                   # Runtime database policy; database files are ignored
 ├── docs/
 │   ├── ai-usage/
 │   │   └── TRANSCRIPT.md           # AI prompts, decisions, corrections, and outcomes
@@ -136,6 +136,23 @@ Lab1_Todo_App/
 └── tsconfig.json
 ```
 
+### Architecture status
+
+| Area | Status | Evidence or next deliverable |
+| --- | --- | --- |
+| Next.js foundation | Complete | TypeScript App Router scaffold and installed dependencies |
+| Frontend/backend separation | Complete | Physical `src/frontend`, `src/backend`, `src/shared`, and thin `src/app` boundaries |
+| React component structure | Complete | Tracked `layout`, `tasks`, and `ui` component folders |
+| Test structure | Complete | Separate backend and frontend test trees |
+| Local data boundary | Complete | Ignored `data/` directory with documented environment override |
+| SQLite schema and migration | Not started | Implement `001_create_tasks.sql` and the migration runner |
+| Backend task behavior | Not started | Implement contracts, database, repository, service, controller, utils, and routes |
+| Todo user interface | Not started | Implement task components, hooks, API client, and responsive styles |
+| Behavior tests | Not started | Add deterministic repository, service, and focused UI tests |
+| Submission documentation | In progress | Finalize dependency and running guides after implementation |
+
+Boundary README files intentionally reserve and explain the approved folders; they do not represent implemented behavior.
+
 ## 5. Data Design
 
 The initial schema uses one `tasks` table because topics are task labels rather than separately managed entities. Each row stores the four required fields, one constrained status, timestamps, and a nullable archive timestamp.
@@ -151,32 +168,32 @@ The complete schema rationale will live in `docs/DATABASE_DESIGN.md` and must re
 
 ### Phase 1 — Foundation
 
-1. Create the Next.js TypeScript project and install pinned dependencies.
-2. Add linting, testing, and environment configuration.
-3. Add the migration and local SQLite connection.
+1. [x] Create the Next.js TypeScript project and install pinned dependencies.
+2. [x] Add linting, testing dependency, and environment structure.
+3. [ ] Add the migration and local SQLite connection.
 
 ### Phase 2 — Backend
 
-1. Define task domain types and fixed statuses.
-2. Implement the repository with parameterized queries and allow-listed sorting.
-3. Implement service validation, archive rules, and overdue derivation.
-4. Implement controllers, typed errors, logging, and route handlers.
+1. [ ] Define task domain types and fixed statuses.
+2. [ ] Implement the repository with parameterized queries and allow-listed sorting.
+3. [ ] Implement service validation, archive rules, and overdue derivation.
+4. [ ] Implement controllers, typed errors, logging, and route handlers.
 
 ### Phase 3 — User Interface
 
-1. Build reusable UI primitives in `src/frontend/components/ui/`.
-2. Build create and edit task forms for all four task fields in `src/frontend/components/tasks/`.
-3. Build active and archived task views.
-4. Add status, topic, and due-date sorting controls.
-5. Add an accessible visual overdue indicator and responsive states.
+1. [ ] Build reusable UI primitives in `src/frontend/components/ui/`.
+2. [ ] Build create and edit task forms for all four task fields in `src/frontend/components/tasks/`.
+3. [ ] Build active and archived task views.
+4. [ ] Add status, topic, and due-date sorting controls.
+5. [ ] Add an accessible visual overdue indicator and responsive states.
 
 ### Phase 4 — Verification and Submission
 
-1. Add deterministic repository and service tests using temporary databases.
-2. Run tests, lint, and a production build.
-3. perform the seven-step walkthrough from a clean-clone equivalent.
-4. Finalize the three required documentation files and AI transcript.
-5. Build a coherent Git history of at least six working commits across multiple sessions.
+1. [ ] Add deterministic repository and service tests using temporary databases.
+2. [ ] Run tests, lint, and a production build.
+3. [ ] Perform the seven-step walkthrough from a clean-clone equivalent.
+4. [ ] Finalize the three required documentation files and AI transcript.
+5. [ ] Build a coherent Git history of at least six working commits across multiple sessions.
 
 ## 7. Definition of Done
 

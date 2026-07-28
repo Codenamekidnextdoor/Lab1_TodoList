@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# COMS3011A Todo Application
 
-## Getting Started
+A local-first, single-user todo application built with Next.js, TypeScript, and SQLite for COMS3011A Lab 1.
 
-First, run the development server:
+> **Current status:** Architecture scaffold complete; task behavior is not implemented yet.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Architecture
+
+The project keeps browser and server responsibilities visibly separate:
+
+```text
+src/app          Next.js pages and route adapters only
+src/frontend     React components, hooks, styles, and browser API client
+src/backend      Controllers, services, repositories, database, logs, and errors
+src/shared       API-safe contracts shared across the boundary
+tests            Separate backend and frontend test trees
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The backend dependency direction is:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+route handler -> controller -> service -> repository -> SQLite
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See [the project plan](docs/PROJECT_PLAN.md) for the complete structure, ownership rules, implementation phases, and rubric traceability. The database decisions are documented in [the database design](docs/DATABASE_DESIGN.md).
 
-## Learn More
+## Development
 
-To learn more about Next.js, take a look at the following resources:
+The exact clean-clone instructions will be finalized and verified in `docs/RUNNING_IT.md` once the database migration and test command are implemented. During architecture development, the available checks are:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev
+npm run lint
+npx tsc --noEmit
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open [http://localhost:3000](http://localhost:3000) after starting the development server.
 
-## Deploy on Vercel
+## Local-Only Scope
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This application is intended to run on the user's machine. It has no deployment target, remote database, or user accounts. Runtime task data will be stored in the ignored `data/` directory.
