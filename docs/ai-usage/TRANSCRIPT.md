@@ -119,6 +119,18 @@ The proposed `src/components/` and `src/server/` names separated some responsibi
 
 **Runtime correction:** A controller test sent JSON without a title and exposed an attempted `.trim()` on `undefined`, which returned HTTP 500. Runtime type checks were added at the service boundary so malformed task input returns a typed HTTP 400 response. A Turbopack file-tracing warning was removed by marking the configurable database and migration paths as runtime-only while preserving automatic migration discovery.
 
+### Phase 3 frontend
+
+**Human prompt:**
+
+> Ok lets go to phase three now.
+
+**Assistant action:** Implemented the browser interface through the same red-green-minimal cycle: a reusable button, typed HTTP client, shared create/edit form, initial active-task loading, create, edit, archive, active/archive switching, allow-listed sorting, and a visible overdue marker sourced from the backend. Responsive styles were added only after the behavior tests passed.
+
+**Debugging corrections:** Vitest's attempted environment glob did not apply jsdom to this setup, so frontend tests use an explicit jsdom environment directive. React Testing Library cleanup was added globally after stale rendered DOM caused duplicate button queries. Final validation also exposed an unconstrained API response generic and a React effect lint violation; a runtime error-payload guard and event-driven loading state resolved them.
+
+**Validation:** Phase 3 completes with 18 passing tests across 10 files. ESLint, `npx tsc --noEmit`, and the Next.js production build pass. Browser checks at 1280px and 390px confirmed active/archive switching, sorting, form layout, stable controls, and no horizontal overflow.
+
 ## Session 1 — Debugging
 
 Substantive failures and corrections are recorded with their implementation slices above. Routine successful command output is summarized rather than copied in full.

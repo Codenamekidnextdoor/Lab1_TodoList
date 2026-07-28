@@ -2,7 +2,7 @@
 
 A local-first, single-user todo application built with Next.js, TypeScript, and SQLite for COMS3011A Lab 1.
 
-> **Current status:** Phase 2 backend complete; Phase 3 will add the tested user interface.
+> **Current status:** Phase 3 complete. The tested local task workspace supports creating, editing, archiving, active/archive views, sorting, and overdue indicators.
 
 ## Architecture
 
@@ -44,6 +44,18 @@ npm run build
 ```
 
 Open [http://localhost:3000](http://localhost:3000) after starting the development server.
+
+## Task Workspace
+
+The browser interface supports the complete task workflow without a page reload:
+
+- Create and edit tasks with title, description, due date, topic, and a fixed status.
+- Archive tasks without deleting their SQLite records.
+- Switch between active and archived views.
+- Sort the current view by due date, topic, or status.
+- See overdue tasks identified from the backend's derived `isOverdue` value.
+
+The layout is keyboard accessible and responsive across desktop and mobile widths.
 
 ## Local-Only Scope
 

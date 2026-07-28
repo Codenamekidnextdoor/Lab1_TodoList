@@ -147,8 +147,8 @@ Lab1_Todo_App/
 | SQLite schema and migration | Complete | Versioned schema, tracked migrations, reusable connection, and CLI runner |
 | Backend utilities | Complete | Structured logger and typed operational errors |
 | Backend task behavior | Complete | Tested types, repository, service, controller, and route-to-SQL flow |
-| Todo user interface | Not started | Implement task components, hooks, API client, and responsive styles |
-| Behavior tests | In progress | Backend migration, repository, service, controller, and route tests complete; UI tests remain |
+| Todo user interface | Complete | Responsive create, edit, archive, active/archive, sorting, and overdue workflows |
+| Behavior tests | Complete | 18 tests cover backend layers, browser API behavior, forms, and workspace interactions |
 | Submission documentation | In progress | Finalize dependency and running guides after implementation |
 
 Boundary README files intentionally reserve and explain the approved folders; they do not represent implemented behavior.
@@ -193,11 +193,11 @@ Tests are delivered with each behavior rather than postponed until Phase 4. Phas
 
 ### Phase 3 — User Interface
 
-1. [ ] Test, then minimally build reusable UI primitives in `src/frontend/components/ui/`.
-2. [ ] Test, then minimally build create and edit task forms for all four task fields.
-3. [ ] Test, then minimally build active and archived task views.
-4. [ ] Test, then minimally add status, topic, and due-date sorting controls.
-5. [ ] Test, then minimally add an accessible overdue indicator and responsive states.
+1. [x] Test, then minimally build reusable UI primitives in `src/frontend/components/ui/`.
+2. [x] Test, then minimally build create and edit task forms for all four task fields.
+3. [x] Test, then minimally build active and archived task views.
+4. [x] Test, then minimally add status, topic, and due-date sorting controls.
+5. [x] Test, then minimally add an accessible overdue indicator and responsive states.
 
 ### Phase 4 — Verification and Submission
 
