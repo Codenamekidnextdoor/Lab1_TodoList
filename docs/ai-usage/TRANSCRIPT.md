@@ -6,7 +6,7 @@
 
 ## How to Read This Record
 
-This is a concise transcript of AI-assisted planning, code generation, and debugging. It records the human constraints, the assistant's actions, corrections made by the human, and where accepted decisions appear in the repository. It is not a claim that every line of code was authored manually.
+This is a concise transcript of AI-assisted planning, code generation, and debugging. It records the human constraints, the assistant's actions, corrections made by the human, and where accepted decisions appear in the repository. It is not a claim that every line of code was authored manually. The chronological conversation is available in [the full transcript appendix](FULL_TRANSCRIPT.md).
 
 ## Session 1 — Requirements and Architecture
 
