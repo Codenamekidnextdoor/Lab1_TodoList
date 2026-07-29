@@ -2,7 +2,7 @@
 
 A local-first, single-user todo application built with Next.js, TypeScript, and SQLite for COMS3011A Lab 1.
 
-> **Current status:** Phase 3 complete. The tested local task workspace supports creating, editing, completing, archiving, active/archive views, sorting, and overdue alerts.
+> **Current status:** Phase 4 complete. The tested local task workspace supports creating, editing, completing, archiving, active/archive views, sorting, overdue alerts, and SQLite persistence across restarts.
 
 ## Architecture
 
@@ -22,28 +22,35 @@ The backend dependency direction is:
 route handler -> controller -> service -> repository -> SQLite
 ```
 
-See [the project plan](docs/PROJECT_PLAN.md) for the complete structure, ownership rules, implementation phases, and rubric traceability. The database decisions are documented in [the database design](docs/DATABASE_DESIGN.md).
+See [the project plan](docs/PROJECT_PLAN.md) for the complete structure, ownership rules, implementation phases, and rubric traceability. The required submission guides document the [database design](docs/DATABASE_DESIGN.md), [third-party code](docs/THIRD_PARTY_CODE.md), and [clean-clone commands](docs/RUNNING_IT.md).
 
-## Development
+## Install and Run
 
-Install dependencies, initialize the local database, and start the application:
+Install Node.js 24.11.1, then run these exact commands from the repository root:
 
 ```bash
-npm install
+npm ci
 npm run db:migrate
 npm run dev
 ```
 
-The default database is `data/todo.db`. Set `DATABASE_PATH` to override it. Run the available checks with:
+Open [http://localhost:3000](http://localhost:3000). Stop the server with `Ctrl+C`; start it again with `npm run dev`. Tasks persist in `data/todo.db` across page reloads and restarts.
+
+Run all automated tests with the single required test command:
 
 ```bash
 npm test
+```
+
+Optional quality checks are:
+
+```bash
 npm run lint
 npx tsc --noEmit
 npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) after starting the development server.
+For production mode, run `npm run build` once and then `npm start`. Set `DATABASE_PATH` before migration and startup to use a database somewhere other than the default `data/todo.db`. See [Running It](docs/RUNNING_IT.md) for clean-clone, database override, and production details.
 
 ## Task Workspace
 

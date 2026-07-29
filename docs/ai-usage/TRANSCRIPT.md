@@ -133,6 +133,22 @@ The proposed `src/components/` and `src/server/` names separated some responsibi
 
 **Edge-case review:** The human proposed a stronger overdue alert, a delete icon, and a direct way to complete Todo or In-Progress tasks. The accessible overdue summary and direct Mark complete action were accepted. Destructive deletion was rejected because the assignment requires archiving while retaining tasks for the archived view; the existing archive icon remains the lifecycle removal control. Completion uses the existing update route, changes only the status to `COMPLETE`, and immediately clears overdue presentation.
 
+### Phase 4 verification and submission
+
+**Human prompt:**
+
+> Now we can do phase 4.
+
+**Assistant action:** Re-read the assignment rubric, audited the shipped files and direct dependencies, removed the unused `zod` and `vite-tsconfig-paths` packages, and added the missing `RUNNING_IT.md` and `THIRD_PARTY_CODE.md` documents. The README was made sufficient for the first clean-clone walkthrough step and now names the verified Node.js version and exact install, migration, start, and test commands.
+
+**Clean-clone correction:** The first `npm ci` attempt overlapped with an already running development server, which held files under `node_modules` open on Windows and caused an invalid interrupted install. The server was stopped and `npm ci` was rerun alone; it installed all 438 packages successfully from `package-lock.json`. This was an environment file-lock issue rather than an application defect.
+
+**Walkthrough:** A new temporary SQLite database was migrated and used for the fixed seven-step checklist. Tasks carrying all four required fields were created; an edit survived reload; archiving moved a task from the active to archived view without deletion; topic, status, and due-date sorts returned the expected orders; a past-due Todo was visibly flagged while the form exposed only the three fixed statuses; and active plus archived data remained after stopping and restarting the server.
+
+**Dependency review:** A non-destructive audit reported high-severity advisories in transitive packages associated with the installed Next.js release. npm's forced recommendation proposed a breaking downgrade to Next.js 9.3.3, so it was rejected rather than applying an unsafe automated change.
+
+**Validation:** The final repository passes 19 tests across 10 files, ESLint, `npx tsc --noEmit`, and the optimized Next.js production build. The Git history audit found eight coherent commits spread across 28 and 29 July 2026.
+
 ## Session 1 — Debugging
 
 Substantive failures and corrections are recorded with their implementation slices above. Routine successful command output is summarized rather than copied in full.

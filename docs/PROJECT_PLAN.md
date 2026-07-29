@@ -149,7 +149,7 @@ Lab1_Todo_App/
 | Backend task behavior | Complete | Tested types, repository, service, controller, and route-to-SQL flow |
 | Todo user interface | Complete | Responsive create, edit, archive, active/archive, sorting, and overdue workflows |
 | Behavior tests | Complete | 19 tests cover backend layers, browser API behavior, forms, and workspace interactions |
-| Submission documentation | In progress | Finalize dependency and running guides after implementation |
+| Submission documentation | Complete | Database, third-party code, running, and AI usage documents match the verified application |
 
 Boundary README files intentionally reserve and explain the approved folders; they do not represent implemented behavior.
 
@@ -201,12 +201,26 @@ Tests are delivered with each behavior rather than postponed until Phase 4. Phas
 
 ### Phase 4 — Verification and Submission
 
-1. [ ] Add any missing edge-case tests identified by the completed walkthrough.
-2. [ ] Refactor completed behavior while keeping the full suite green.
-3. [ ] Run tests, lint, and a production build.
-4. [ ] Perform the seven-step walkthrough from a clean-clone equivalent.
-5. [ ] Finalize the three required documentation files and AI transcript.
-6. [ ] Build a coherent Git history of at least six working commits across multiple sessions.
+1. [x] Review edge cases identified by the completed walkthrough; no uncovered failure required another behavior test.
+2. [x] Remove unused direct dependencies while keeping the full suite green.
+3. [x] Run tests, lint, type-check, and a production build.
+4. [x] Perform the seven-step walkthrough from a clean-clone equivalent.
+5. [x] Finalize the three required documentation files and AI transcript.
+6. [x] Verify a coherent Git history of at least six working commits across multiple sessions.
+
+### Phase 4 verification record
+
+The final walkthrough used Node.js 24.11.1, npm 11.6.2, `npm ci`, and a new temporary SQLite database. It was performed in the rubric's required order:
+
+1. `npm ci`, `npm run db:migrate`, and `npm run dev` installed and started the application from the documented commands.
+2. Three tasks were created with title, description, due date, and topic, then appeared in the active list.
+3. A task's title and description were edited, and both changes remained after a browser reload.
+4. The edited task was archived, disappeared from the active view, and remained visible in the archived view.
+5. Topic sorting produced Alpha, Beta, Zeta; status and due-date sorting also produced the expected orders.
+6. A past-due Todo displayed both the overdue summary and row flag. The status selector contained only Todo, In-Progress, and Complete.
+7. The server was stopped and restarted against the same database; the two active tasks and edited archived task remained.
+
+Final automated validation passed with 19 tests across 10 files, ESLint, `npx tsc --noEmit`, and the optimized Next.js production build. A non-destructive npm audit reported advisories in transitive Next.js dependencies; npm's forced resolution proposed a breaking downgrade, so no unsafe forced update was applied.
 
 ## 7. Definition of Done
 
