@@ -156,3 +156,5 @@ Substantive failures and corrections are recorded with their implementation slic
 ## Declaration
 
 The project was developed with assistance from GitHub Copilot. The human supplied the assignment, selected and corrected the architecture, reviewed the repository output, and remains responsible for understanding and submitting the work.
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]

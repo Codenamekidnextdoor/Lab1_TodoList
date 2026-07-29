@@ -246,3 +246,5 @@ The rubric requires at least six coherent commits and work across more than one 
 7. `docs: verify clean-clone setup and submission guidance`
 
 Commits must be created as each working slice is completed. They should not be manufactured retroactively or compressed into one sitting.
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]

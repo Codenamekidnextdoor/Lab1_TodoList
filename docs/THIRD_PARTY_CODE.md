@@ -36,3 +36,5 @@ The application uses the direct packages below. Versions are the versions instal
 - `package-lock.json` is committed so `npm ci` reproduces the verified dependency tree.
 - The project does not copy third-party source code into the repository.
 - Dependency updates require the automated tests, lint, type-check, and production build to pass.
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]

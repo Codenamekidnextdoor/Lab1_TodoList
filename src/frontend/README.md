@@ -9,3 +9,5 @@ This directory owns browser-facing React code. It may import application types f
 - `lib`: typed HTTP calls to the Next.js route handlers.
 - `styles`: frontend design tokens and component styling.
 - `types`: presentation-only view models.
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]

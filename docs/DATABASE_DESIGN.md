@@ -104,3 +104,5 @@ The migration creates focused indexes for the required views and sorting operati
 ## Synchronization Rule
 
 This document, `migrations/001_create_tasks.sql`, the backend repository row mapping, and `src/types/task.ts` are one contract. Any schema change must update all four in the same coherent commit.
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]

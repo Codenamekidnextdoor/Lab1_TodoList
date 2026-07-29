@@ -68,3 +68,5 @@ The layout is keyboard accessible and responsive across desktop and mobile width
 ## Local-Only Scope
 
 This application is intended to run on the user's machine. It has no deployment target, remote database, or user accounts. Runtime task data will be stored in the ignored `data/` directory.
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]

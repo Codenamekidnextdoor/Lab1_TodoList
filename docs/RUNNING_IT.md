@@ -90,3 +90,5 @@ The parent directory is created automatically when it does not exist.
 | `npx tsc --noEmit` | Type-check without creating output files |
 | `npm run build` | Create a production build |
 | `npm start` | Serve the completed production build |
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]

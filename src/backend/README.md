@@ -15,3 +15,5 @@ controller -> service -> repository -> database
 - `repository`: owns parameterized SQLite queries and row mapping; contains no HTTP behavior.
 - `utils`: typed application errors and structured local logging.
 - `database.ts` (planned): creates SQLite connections and applies migrations.
+
+**AI Declaration:** This document was reviewed and edited with: Github Copilot[GPT-5.6-Sol]
