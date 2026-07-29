@@ -129,7 +129,9 @@ The proposed `src/components/` and `src/server/` names separated some responsibi
 
 **Debugging corrections:** Vitest's attempted environment glob did not apply jsdom to this setup, so frontend tests use an explicit jsdom environment directive. React Testing Library cleanup was added globally after stale rendered DOM caused duplicate button queries. Final validation also exposed an unconstrained API response generic and a React effect lint violation; a runtime error-payload guard and event-driven loading state resolved them.
 
-**Validation:** Phase 3 completes with 18 passing tests across 10 files. ESLint, `npx tsc --noEmit`, and the Next.js production build pass. Browser checks at 1280px and 390px confirmed active/archive switching, sorting, form layout, stable controls, and no horizontal overflow.
+**Validation:** Phase 3 completes with 19 passing tests across 10 files. ESLint, `npx tsc --noEmit`, and the Next.js production build pass. Browser checks at 1280px and 390px confirmed active/archive switching, sorting, form layout, stable controls, and no horizontal overflow.
+
+**Edge-case review:** The human proposed a stronger overdue alert, a delete icon, and a direct way to complete Todo or In-Progress tasks. The accessible overdue summary and direct Mark complete action were accepted. Destructive deletion was rejected because the assignment requires archiving while retaining tasks for the archived view; the existing archive icon remains the lifecycle removal control. Completion uses the existing update route, changes only the status to `COMPLETE`, and immediately clears overdue presentation.
 
 ## Session 1 — Debugging
 

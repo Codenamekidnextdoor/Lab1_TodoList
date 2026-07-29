@@ -1,6 +1,6 @@
 'use client';
 
-import { Archive, Pencil, Plus } from 'lucide-react';
+import { Archive, Check, Pencil, Plus, TriangleAlert } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 import type { TaskInput, TaskSort, TaskWithOverdue } from '../../../types/task';
@@ -57,6 +57,18 @@ export function AppShell() {
       setError(reason instanceof Error ? reason.message : 'Could not archive task');
     }
   }
+
+  async function handleComplete(task: TaskWithOverdue): Promise<void> {
+    await handleUpdate(task.id, {
+      title: task.title,
+      description: task.description,
+      dueDate: task.dueDate,
+      topic: task.topic,
+      status: 'COMPLETE',
+    });
+  }
+
+  const overdueCount = tasks.filter((task) => task.isOverdue).length;
 
   return (
     <main className="app-shell">
@@ -122,6 +134,12 @@ export function AppShell() {
           </label>
         </div>
         <h2 id="task-list-title">{archived ? 'Archived tasks' : 'Active tasks'}</h2>
+        {!archived && overdueCount > 0 && (
+          <p className="overdue-summary" role="alert">
+            <TriangleAlert aria-hidden="true" size={18} />
+            {overdueCount} overdue {overdueCount === 1 ? 'task needs' : 'tasks need'} attention
+          </p>
+        )}
         {isLoading ? (
           <p>Loading tasks...</p>
         ) : tasks.length === 0 ? (
@@ -149,6 +167,16 @@ export function AppShell() {
                       <div><dt>Due</dt><dd>{task.dueDate}</dd></div>
                     </dl>
                     {!archived && <div className="task-actions">
+                      {task.status !== 'COMPLETE' && (
+                        <Button
+                          type="button"
+                          variant="icon"
+                          aria-label={`Mark ${task.title} complete`}
+                          onClick={() => handleComplete(task)}
+                        >
+                          <Check aria-hidden="true" size={18} />
+                        </Button>
+                      )}
                       <Button
                         type="button"
                         variant="icon"

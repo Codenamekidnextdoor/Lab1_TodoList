@@ -148,7 +148,7 @@ Lab1_Todo_App/
 | Backend utilities | Complete | Structured logger and typed operational errors |
 | Backend task behavior | Complete | Tested types, repository, service, controller, and route-to-SQL flow |
 | Todo user interface | Complete | Responsive create, edit, archive, active/archive, sorting, and overdue workflows |
-| Behavior tests | Complete | 18 tests cover backend layers, browser API behavior, forms, and workspace interactions |
+| Behavior tests | Complete | 19 tests cover backend layers, browser API behavior, forms, and workspace interactions |
 | Submission documentation | In progress | Finalize dependency and running guides after implementation |
 
 Boundary README files intentionally reserve and explain the approved folders; they do not represent implemented behavior.

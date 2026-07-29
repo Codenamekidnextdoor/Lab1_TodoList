@@ -232,6 +232,14 @@ textarea {
   border-left: 3px solid var(--alert);
 }
 
+.overdue-summary {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1rem 0 0;
+  font-weight: 650;
+}
+
 .task-list {
   list-style: none;
 }

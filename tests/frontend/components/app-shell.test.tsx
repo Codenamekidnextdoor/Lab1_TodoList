@@ -100,4 +100,28 @@ describe('AppShell', () => {
             sort: 'topic',
         }));
     });
+
+    it('alerts about overdue work and lets an unfinished task be completed directly', async () => {
+        vi.mocked(taskApi.listTasks).mockResolvedValue([{ ...createdTask, isOverdue: true }]);
+        vi.mocked(taskApi.updateTask).mockResolvedValue({
+            ...createdTask,
+            status: 'COMPLETE',
+            isOverdue: false,
+        });
+        render(<AppShell />);
+
+        expect((await screen.findByRole('alert')).textContent).toContain('1 overdue task needs attention');
+        fireEvent.click(screen.getByRole('button', { name: 'Mark Submit lab complete' }));
+
+        await waitFor(() => expect(taskApi.updateTask).toHaveBeenCalledWith(1, {
+            title: createdTask.title,
+            description: createdTask.description,
+            dueDate: createdTask.dueDate,
+            topic: createdTask.topic,
+            status: 'COMPLETE',
+        }));
+        expect(screen.getByText('COMPLETE')).toBeTruthy();
+        expect(screen.queryByText('Overdue')).toBeNull();
+        expect(screen.queryByRole('button', { name: 'Mark Submit lab complete' })).toBeNull();
+    });
 });
